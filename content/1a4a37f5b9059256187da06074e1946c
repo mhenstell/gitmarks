@@ -1,0 +1,750 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<!--
+		Headline v1.6.1
+		September 13, 2010
+		Design by Airspace Workshop
+		http://www.airspaceworkshop.com
+	-->
+
+	<!-- Default Variables -->
+	<meta name="color:Background" content="#efefef"/>
+	<meta name="color:Background Alt" content="#eeeeee"/>
+	<meta name="color:Site Title Text" content="#333333"/>
+	<meta name="color:Body Text" content="#333333"/>
+	<meta name="color:Meta Text" content="#666666"/>
+	<meta name="color:Sidebar Heading Text" content="#666666"/>
+	<meta name="color:Navigation Text" content="#999999"/>
+	<meta name="color:Text Shadow" content="#ffffff"/>
+	<meta name="color:Links" content="#006699"/>
+	<meta name="color:Borders" content="#cccccc"/>
+	<meta name="font:Headings" content="Futura"/>
+	<meta name="font:Body" content="Georgia"/>
+	<meta name="font:Meta" content="Helvetica"/>
+	<meta name="image:Header" content=""/>
+	<meta name="image:Background" content="http://static.tumblr.com/8wirmq7/nUTl1z005/bg-default.png"/>
+	<meta name="if:Tile Background Image" content="1"/>
+	<meta name="if:Show Post Notes" content="1"/>
+	<meta name="if:Show Twitter Headline" content="0"/>
+	<meta name="if:Show Twitter Sidebar" content="0"/>
+	<meta name="if:Show People I Follow" content="1"/>
+	<meta name="if:Show Group Members" content="1"/>
+	<meta name="if:Show Random Post Link" content="0"/>
+	<meta name="if:Show Mobile Layout Link" content="0"/>
+	<meta name="if:Enable Streampad" content="0"/>
+	<meta name="text:Contact Email Address" content=""/>
+	<meta name="text:Tag Navigation One" content="" />
+	<meta name="text:Tag Navigation Two" content="" />
+	<meta name="text:Tag Navigation Three" content="" />
+	<meta name="text:Twitter Sidebar Count" content="3"/>
+	<meta name="text:Disqus Shortname" content=""/>
+	<meta name="text:Google Analytics Web Property ID" content=""/>
+	<meta name="text:Typekit Kit ID" content=""/>
+	<meta name="text:Twitter API Key" content=""/>
+	<meta name="text:Amazon Tracking ID" content=""/>
+	<meta name="text:VigLink API Key" content=""/>
+	<meta name="text:Clicky Site ID" content=""/>
+
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<title>Finer Things in Mac &ndash; Page 1</title>
+	<meta name="description" content="The Finer Things in Tech sites sweat the details. At Finer/Mac, you can learn about the tips, handy features, and polish that make the Mac and its third-party apps great."/>
+
+	
+	<meta name="robots" content="noindex,follow" />
+	
+	
+
+	<link rel="shortcut icon" href="http://30.media.tumblr.com/avatar_7790ebf06462_16.png"/>
+	<link rel="alternate" type="application/rss+xml" href="http://mac.finerthingsin.com/rss"/>
+
+	<link rel="stylesheet" href="http://static.tumblr.com/8wirmq7/2Iwl2p3xe/screen.v1.3.css" type="text/css" media="screen, projection"/>
+	<!--[if IE7]><link rel="stylesheet" href="http://static.tumblr.com/8wirmq7/Cgvl21f2w/ie7.v1.css" type="text/css" media="screen, projection"/><![endif]-->
+
+   	<style type="text/css">
+	/* Dynamic Typography and Color */
+	
+	body {font-family: 'Lucida Sans', 'Lucida Grande', 'Lucida Sans Unicode', sans-serif; }
+	h1, h2, h3, h4 { font-family: 'Lucida Sans', 'Lucida Grande', 'Lucida Sans Unicode', sans-serif; text-shadow: #ffffff }
+	h5, .index-header { font-family:'Lucida Sans', 'Lucida Grande', 'Lucida Sans Unicode', sans-serif; text-shadow: #ffffff 1px 1px 0px;}
+	blockquote { background: #eeeeee; }
+	.post .chat li span { font-family: 'Lucida Sans', 'Lucida Grande', 'Lucida Sans Unicode', sans-serif; }
+	#contributors ul li ul li { font-family: 'Lucida Sans', 'Lucida Grande', 'Lucida Sans Unicode', sans-serif; }
+	#footer { font-family: 'Lucida Sans', 'Lucida Grande', 'Lucida Sans Unicode', sans-serif; }
+	.hi-res a { font-family: 'Lucida Sans', 'Lucida Grande', 'Lucida Sans Unicode', sans-serif; text-shadow: #ffffff 1px 1px 0px; }
+	#nav-main {font-family: 'Lucida Sans', 'Lucida Grande', 'Lucida Sans Unicode', sans-serif; }
+	#primary .nav .page { text-shadow: #ffffff 1px 1px 0px; }
+	.post dl a, .post .disqus, .root { font-family: 'Lucida Sans', 'Lucida Grande', 'Lucida Sans Unicode', sans-serif; text-shadow: #ffffff 1px 1px 0px; }
+	#tags li, #share li { font-family: 'Lucida Sans', 'Lucida Grande', 'Lucida Sans Unicode', sans-serif; text-shadow: #ffffff 1px 1px 0px; }
+	
+	body { color: #333333; background: #efefef url(http://static.tumblr.com/8wirmq7/nUTl1z005/bg-default.png) repeat top center; }
+	a { color: #0054B9; text-decoration: none; }
+	a:hover { color: #0054B9; text-decoration: underline;}
+	#header h1 a, #tweetline { color: #333333 !important; }
+	#contributors ul li ul li em { color: #999999; }
+	#footer a, .hi-res a { color:#666666; text-decoration: none;  }
+	.hi-res a:hover { color: #0054B9; }
+	#nav-main a, #primary .nav a { color:#999999; text-decoration: none; text-shadow: #ffffff 1px 1px 0px;}
+	#footer { color:#666666; }
+	#primary .nav, #search, #search #search-input { background-color: #eeeeee; color:#999999;}
+	#nav-main a:hover, #primary .nav a:hover { color: #0054B9; }
+	h5 { color: #666666; }
+	.post dl a, .post .disqus a, #tags li a, ol.notes li.note blockquote a { color: #666666; text-decoration: none; }
+	.post dl a:hover, .post .disqus a:hover, #tags li a:hover, ol.notes li.note blockquote a:hover { color: #333333; }
+	.question span { color:#efefef }
+	.root, .index-header { background-color: #eeeeee; }
+	.post .disqus, .root a { color: #666666; }
+	.item, .item h5, #search, #header, #primary, #index #primary, #permalink #primary, #index .post, #permalink .post, .post, #primary .nav, #footer, blockquote, #following img, #contributors .thumb img, #likes-list .content, .root, .col, #tweetline, ol.notes, ol.notes li.note, .index-header, .post .chat li, li.like_post, .audio .caption, #album-artwork img { border-color: #cccccc; }
+	.post .audio .artwork { border-color:#eeeeee; }
+	.post .quote, .bubble { color: #efefef; background-color:#333333; }
+	.post .quote:after, .bubble:after { border-color:#333333 transparent transparent; }
+
+	/* Custom CSS */
+	
+	</style>
+     
+	<script type="text/javascript" src="http://static.tumblr.com/8wirmq7/I4Xl21f56/jquery.1.4.2.min.js"></script>
+	
+	
+
+	<!-- Twitter Javscript Integration -->
+	<script type="text/Javascript" src="http://static.tumblr.com/8wirmq7/jjEl21f6s/jquery.tweet.v1.js"></script>
+	
+	
+	
+	<script type='text/javascript'>
+	//<![CDATA[
+	$(document).ready(function(){
+		$("#tweet").tweet({
+			username: 'finermac',
+			count: 3,
+			loading_text: '<img src="http://static.tumblr.com/8wirmq7/Ryyl21f7o/loading.gif" alt=""/>'
+		});
+	});
+	//]]>
+	</script>
+	
+	
+
+	
+
+	<script type="text/javascript" src="http://static.tumblr.com/8wirmq7/8rnl21f91/headline.v1.js"></script>
+
+</head>
+<body>
+	<!--[if IE 6]><div id="ie6">Internet Explorer 6 is not supported. We suggest <a href="http://www.microsoft.com/windows/Internet-explorer/default.aspx">updating your browser</a>, or <a href="/mobile">try the mobile version.</a></div><![endif]-->
+
+	<div class="wrap" id="index">
+		<noscript>
+			<div id="warning">Javascript is currently disabled. For best results, please <span>enable javascript</span> or <a href="/mobile">view our mobile version.</a></div>
+		</noscript>    
+
+		<!-- Begin Header -->
+		<div id="header">
+   			
+			<h1><a href="/">Finer Things in Mac</a></h1>
+			
+    	</div>
+		<!-- End Header -->
+
+		<!-- Begin Body Columns -->
+		<div id="body">
+
+		<!-- Begin Sidebar -->
+		<div class="col" id="sidebar">
+			<div id="search">
+				<form method="get" action="/search">
+					<input type="text" value="" name="q" id="search-input"/>
+					<input type="submit" value="" id="search-button"/>
+				</form>
+			</div>
+			<ul class="nav" id="nav-main">
+				<li><a href="/" title="Finer Things in Mac">Home</a></li>
+				
+				
+				
+				<li><a href="/twitter-finermac" title="Follow on Twitter">Follow on Twitter</a></li><li><a href="/network" title="Finer Things Network">Finer Things Network</a></li><li><a href="/about" title="About">About</a></li><li><a href="/guidelines" title="Guidelines and rules">Guidelines and rules</a></li>
+				<li><a href="/ask" title="Ask us anything">Ask us anything</a></li>
+				<li><a href="/random" title="View a random post">Random</a></li>
+				<li><a href="/mobile" title="Optimized version for handsets">Mobile</a></li>
+				<li><a href="/submit" title="Submit a Finer Thing">Submit a Finer Thing</a></li>
+				
+			</ul>
+
+			
+			<div class="item" id="about">
+				<h5>About</h5>
+				<div class="content">The <a href="http://finerthingsin.com">Finer Things in Tech</a> sites sweat the details. <br />
+<br />
+At Finer/Mac, you can learn about the tips, handy features, and polish that make the Mac and its third-party apps great.</div>
+			</div>
+			
+			
+		</div>
+		<!-- End Sidebar -->
+
+		<!-- Begin Primary -->
+		<div class="col" id="primary">
+			
+			
+
+			
+			
+			<div class="post tagged-iTunes tagged-App+Store tagged-keyboard+shortcuts" id="post-2976649853">
+				
+				<dl>
+					<dt><a href="http://mac.finerthingsin.com/post/2976649853/app-store-updates-itunes-keyboard-shortcut" title="Permalink">10:04 am - Fri, Jan 28, 2011</a></dt>
+					<dd><a href="http://mac.finerthingsin.com/post/2976649853/app-store-updates-itunes-keyboard-shortcut#post-notes">3 notes</a></dd>
+				</dl>
+				
+
+				
+
+				
+				
+				
+				
+				
+
+				
+				
+				
+
+				
+
+				
+					<h2>Easily check for App Store updates in iTunes</h2>
+					<p>Instead of mousing to the &#8216;Check For Updates&#8217; text button at the bottom of the Apps section of iTunes 10, you can simply hit ⌘-R to run the check.</p>
+
+<p>Strangely, I cannot find this command anywhere iTunes&#8217; menu system besides the main app menu, but that&#8217;s for checking on iTunes updates, not app updates. Plus, ⌘-R is set for the Store &gt; Reload Page command, but then, only when you&#8217;re in the store; it&#8217;s grayed out when viewing your apps.</p>
+				
+			
+				
+				
+				<p class="disqus"><a class="dsq-comment-count" href="http://mac.finerthingsin.com/post/2976649853/app-store-updates-itunes-keyboard-shortcut#disqus_thread">Comments</a></p>
+
+				
+
+				
+				
+				
+
+			</div>
+			
+			
+			<div class="post tagged-Finder tagged-Path+Finder tagged-TotalFinder" id="post-2959027576">
+				
+				<dl>
+					<dt><a href="http://mac.finerthingsin.com/post/2959027576/can-i-rank-subfolders-in-column-view-to-always-be-above" title="Permalink">10:00 am - Thu, Jan 27, 2011</a></dt>
+					<dd></dd>
+				</dl>
+				
+
+				
+
+				
+				
+				
+				
+				
+
+				
+				
+				
+
+				
+
+				
+			
+				
+					<div class="question bubble"><span>Q:</span> Can I rank subfolders in column view to always be above individual files also within that same column?</div>
+					<span class="asker"><img src="/images/anonymous_avatar_30.gif" alt="" height="30" width="30"/> Anonymous</span>
+					<div class="caption answer"><p>Unfortunately, the Finder doesn&#8217;t offer this option. You would need to use a third-party plugin like <a href="http://totalfinder.binaryage.com/">TotalFinder</a> or a full-blown app like <a href="http://cocoatech.com/">PathFinder</a>. If I remember correctly, TotalFinder offers the option but it is not enabled by default, while PathFinder uses it right out of the box.</p></div>
+				
+				
+				<p class="disqus"><a class="dsq-comment-count" href="http://mac.finerthingsin.com/post/2959027576/can-i-rank-subfolders-in-column-view-to-always-be-above#disqus_thread">Comments</a></p>
+
+				
+
+				
+				
+				
+
+			</div>
+			
+			
+			<div class="post tagged-Mac+App+Store tagged-behavior tagged-HIG" id="post-2946214142">
+				
+				<dl>
+					<dt><a href="http://mac.finerthingsin.com/post/2946214142/mac-app-store-quits-close-window" title="Permalink">3:52 pm - Wed, Jan 26, 2011</a></dt>
+					<dd><a href="http://mac.finerthingsin.com/post/2946214142/mac-app-store-quits-close-window#post-notes">3 notes</a></dd>
+				</dl>
+				
+
+				
+
+				
+				
+				
+				
+				
+
+				
+				
+				
+
+				
+
+				
+					<h2>The Mac App Store quits when you close its window</h2>
+					<p>If you close the Mac App Store&#8217;s window (either with ⌘-W or by clicking the window&#8217;s red close button), the app quits. Setting aside the recent debate over the relevance of <a href="http://developer.apple.com/library/mac/#documentation/UserExperience/Conceptual/AppleHIGuidelines/XHIGIntro/XHIGIntro.html">Apple&#8217;s Human Interface Guidelines</a>, it&#8217;s a fairly non-standard behavior for most first- and third-party apps.</p>
+				
+			
+				
+				
+				<p class="disqus"><a class="dsq-comment-count" href="http://mac.finerthingsin.com/post/2946214142/mac-app-store-quits-close-window#disqus_thread">Comments</a></p>
+
+				
+
+				
+				
+				
+
+			</div>
+			
+			
+			<div class="post tagged-Tumblr+Tuesday tagged-Finer+Things+Business" id="post-2926233383">
+				
+				<dl>
+					<dt><a href="http://mac.finerthingsin.com/post/2926233383/site-business-recommend-finer-things-in-mac-for-the" title="Permalink">11:18 am - Tue, Jan 25, 2011</a></dt>
+					<dd></dd>
+				</dl>
+				
+
+				
+
+				
+				
+				
+				
+				
+
+				
+				
+				
+
+				
+
+				
+					<h2>Site Business: Recommend Finer Things in Mac for the Tumblr Directory</h2>
+					<p>I don&#8217;t usually do this sort of thing, but I figured what the heck, it&#8217;s better to regret something you did than something you didn&#8217;t do, right?</p>
+
+<p>As you may know, it&#8217;s <a href="http://www.tumblr.com/tagged/Tumblr+Tuesday">Tumblr Tuesday</a>, which means you can recommend your favorite sites to help them gain ultimate awesomeness and digital immortality in the <a href="http://www.tumblr.com/directory">Tumblr Directory</a>.</p>
+
+<p>If Finer Things in Mac has floated your boat, tickled your fancy, or perhaps even helped you appreciate the little details of the Mac and third-party software, I&#8217;d be mighty thankful if you&#8217;d <a href="http://www.tumblr.com/directory/recommend/tech/finermac">recommend it in the directory</a>. Ditto for any of the other <a href="http://finerthingsin.com">Finer Things sites</a>.</p>
+
+<p>As always, thanks for reading.</p>
+				
+			
+				
+				
+				<p class="disqus"><a class="dsq-comment-count" href="http://mac.finerthingsin.com/post/2926233383/site-business-recommend-finer-things-in-mac-for-the#disqus_thread">Comments</a></p>
+
+				
+
+				
+				
+				
+
+			</div>
+			
+			
+			<div class="post tagged-keyboard+shortcuts tagged-tips tagged-submission" id="post-2914720412">
+				
+				<dl>
+					<dt><a href="http://mac.finerthingsin.com/post/2914720412/mac-expose-keyboard-shortcuts" title="Permalink">5:10 pm - Mon, Jan 24, 2011</a></dt>
+					<dd><a href="http://mac.finerthingsin.com/post/2914720412/mac-expose-keyboard-shortcuts#post-notes">5 notes</a></dd>
+				</dl>
+				
+
+				
+
+				
+				
+				
+				
+				
+
+				
+				
+				
+
+				
+
+				
+					<h2>Expos&eacute; keyboard shortcuts</h2>
+					<p>Exposé - All windows: F3</p>
+
+<p>Exposé - Application windows: ^F3</p>
+
+<p>Exposé - Show desktop: ⌘F3</p>
+
+<p>Exposé - System Preferences: ⌥F3</p>
+				
+			
+				
+				
+				<p class="disqus"><a class="dsq-comment-count" href="http://mac.finerthingsin.com/post/2914720412/mac-expose-keyboard-shortcuts#disqus_thread">Comments</a></p>
+
+				
+
+				
+				
+				
+
+			</div>
+			
+			
+			<div class="post tagged-CloudApp tagged-menu+bar tagged-utilities tagged-social+media" id="post-2830343969">
+				
+				<dl>
+					<dt><a href="http://mac.finerthingsin.com/post/2830343969/the-menu-bar-utility-for-cloudapp-a-simple" title="Permalink">2:40 pm - Wed, Jan 19, 2011</a></dt>
+					<dd><a href="http://mac.finerthingsin.com/post/2830343969/the-menu-bar-utility-for-cloudapp-a-simple#post-notes">2 notes</a></dd>
+				</dl>
+				
+
+				
+
+				
+					<img src="http://26.media.tumblr.com/tumblr_lfaes7kZDe1qzii3wo1_400.jpg" alt="The menu bar utility for CloudApp, a simple service for sharing links, photos, and other files with short URLs, displays a list of the most recent items you&amp;#8217;ve shared. You can click any item to visit it in a browser, but you can also mouse over the icon on the left (highlighted in the image) to copy its short URL to the clipboard, even if you use CloudApp Pro&amp;#8217;s custom domain option."/>
+					
+					<div class="caption"><p>The menu bar utility for <a href="http://getcloudapp.com/">CloudApp</a>, a simple service for sharing links, photos, and other files with short URLs, displays a list of the most recent items you&#8217;ve shared. You can click any item to visit it in a browser, but you can also mouse over the icon on the left (highlighted in the image) to copy its short URL to the clipboard, even if you use <a href="http://store.getcloudapp.com/">CloudApp Pro</a>&#8217;s custom domain option.</p></div>
+				
+				
+				
+				
+				
+
+				
+				
+				
+
+				
+
+				
+			
+				
+				
+				<p class="disqus"><a class="dsq-comment-count" href="http://mac.finerthingsin.com/post/2830343969/the-menu-bar-utility-for-cloudapp-a-simple#disqus_thread">Comments</a></p>
+
+				
+
+				
+				
+				
+
+			</div>
+			
+			
+			<div class="post tagged-Twitter tagged-gestures" id="post-2624522645">
+				
+				<dl>
+					<dt><a href="http://mac.finerthingsin.com/post/2624522645/twitter-for-mac-and-the-three-finger-swipe" title="Permalink">11:09 am - Thu, Jan 6, 2011</a></dt>
+					<dd><a href="http://mac.finerthingsin.com/post/2624522645/twitter-for-mac-and-the-three-finger-swipe#post-notes">4 notes</a></dd>
+				</dl>
+				
+
+				
+
+				
+				
+				
+				
+				
+
+				
+				
+				
+
+				
+
+				
+					<h2>Twitter for Mac and the three-finger swipe</h2>
+					<p>Use a three-finger swipe over a tweet in Twitter 2 for Mac (previously known as Tweetie from Atebits) to visit its link, hastag, or conversation view. If there is more than one link or hashtag, though, you&#8217;ll still have to use the old &#8216;n busted mouse the click it.</p>
+				
+			
+				
+				
+				<p class="disqus"><a class="dsq-comment-count" href="http://mac.finerthingsin.com/post/2624522645/twitter-for-mac-and-the-three-finger-swipe#disqus_thread">Comments</a></p>
+
+				
+
+				
+				
+				
+
+			</div>
+			
+			
+			<div class="post tagged-iPhoto tagged-iLife tagged-iPhoto+11 tagged-getting+started tagged-tutorials" id="post-2073720376">
+				
+				<dl>
+					<dt><a href="http://mac.finerthingsin.com/post/2073720376/with-iphoto-11-apple-seems-to-have-implemented" title="Permalink">2:46 pm - Thu, Dec 2, 2010</a></dt>
+					<dd><a href="http://mac.finerthingsin.com/post/2073720376/with-iphoto-11-apple-seems-to-have-implemented#post-notes">2 notes</a></dd>
+				</dl>
+				
+
+				
+
+				
+				
+				
+					<script type="text/javascript" language="javascript" src="http://assets.tumblr.com/javascript/tumblelog.js?449"></script><div id="photoset_2073720376" class="html_photoset">    <p><img src="http://25.media.tumblr.com/tumblr_lctj11QqWM1qzii3wo1_400.jpg" alt="" class="photoset_photo"/></p><p class="photoset_caption"></p><p><img src="http://26.media.tumblr.com/tumblr_lctj11QqWM1qzii3wo2_400.jpg" alt="" class="photoset_photo"/></p><p class="photoset_caption"></p><p><img src="http://30.media.tumblr.com/tumblr_lctj11QqWM1qzii3wo3_400.jpg" alt="" class="photoset_photo"/></p><p class="photoset_caption"></p></div><script type="text/javascript">    replaceIfFlash(9, "photoset_2073720376", '\x3cembed type=\x22application/x-shockwave-flash\x22 src=\x22/swf/photoset.swf\x22 bgcolor=\x22#000000\x22 quality=\x22high\x22 class=\x22photoset\x22 flashvars=\x22showLogo=false\x26amp;showVersionInfo=false\x26amp;dataFile=/post/2073720376/photoset_xml/tumblr_lctj11QqWM1qzii3w/500\x22 height=\x22268\x22 width=\x22400\x22\x3e\x3c/embed\x3e')</script>
+					<div class="caption"><p>With iPhoto &#8216;11, Apple seems to have implemented the &#8220;subtle tutorial&#8221; trend that&#8217;s become popular among third-party developers. If your library is empty, the Events, Photos, Faces, and Places sections display a concise &#8216;getting started&#8217; message until you drag in your first photo(s).</p></div>
+				
+				
+				
+
+				
+				
+				
+
+				
+
+				
+			
+				
+				
+				<p class="disqus"><a class="dsq-comment-count" href="http://mac.finerthingsin.com/post/2073720376/with-iphoto-11-apple-seems-to-have-implemented#disqus_thread">Comments</a></p>
+
+				
+
+				
+				
+				
+
+			</div>
+			
+			
+			<div class="post tagged-keyboard+shortcuts" id="post-1716236328">
+				
+				<dl>
+					<dt><a href="http://mac.finerthingsin.com/post/1716236328/how-can-you-alt-tab-between-windows-like-in-windows" title="Permalink">12:01 pm - Sun, Nov 28, 2010</a></dt>
+					<dd></dd>
+				</dl>
+				
+
+				
+
+				
+				
+				
+				
+				
+
+				
+				
+				
+
+				
+
+				
+			
+				
+					<div class="question bubble"><span>Q:</span> How can you alt-tab between windows like in Windows? For example, I know you can Command-Tab between PROGRAMS, but what about individual windows within a program -- such as multiple Word documents?<br />
+<br />
+Thanks,<br />
+Eric Metz</div>
+					<span class="asker"><img src="/images/anonymous_avatar_30.gif" alt="" height="30" width="30"/> Anonymous</span>
+					<div class="caption answer"><p>To switch between multiple document windows in a single app, you want ⌘-` (Command-Tilde, the second key is right above Tab).</p></div>
+				
+				
+				<p class="disqus"><a class="dsq-comment-count" href="http://mac.finerthingsin.com/post/1716236328/how-can-you-alt-tab-between-windows-like-in-windows#disqus_thread">Comments</a></p>
+
+				
+
+				
+				
+				
+
+			</div>
+			
+			
+			<div class="post tagged-keyboard+shortcuts" id="post-1670123061">
+				
+				<dl>
+					<dt><a href="http://mac.finerthingsin.com/post/1670123061/shortcut-hide-all-apps-but-this-one" title="Permalink">10:02 am - Wed, Nov 24, 2010</a></dt>
+					<dd><a href="http://mac.finerthingsin.com/post/1670123061/shortcut-hide-all-apps-but-this-one#post-notes">3 notes</a></dd>
+				</dl>
+				
+
+				
+
+				
+				
+				
+				
+				
+
+				
+				
+				
+
+				
+
+				
+					<h2>Shortcut: Hide all apps but this one</h2>
+					<p>If you need to clear your desktop quickly, use ⌘-⌥-H (Hide Others) to hide all applications besides the one you are currently using. It&#8217;s basically the inside-out version of the ⌘-H (Hide) command, found under the application menu.</p>
+				
+			
+				
+				
+				<p class="disqus"><a class="dsq-comment-count" href="http://mac.finerthingsin.com/post/1670123061/shortcut-hide-all-apps-but-this-one#disqus_thread">Comments</a></p>
+
+				
+
+				
+				
+				
+
+			</div>
+			
+			
+			
+			<ul class="nav">
+				<li class="newer">&nbsp;</li>
+				<li class="page"><span>~</span> 1 <em>of</em> 7 <span>~</span></li>
+				<li class="older">&nbsp;<a href="/page/2">Older &rarr;</a></li>
+			</ul>
+			
+			
+		</div>
+		<!-- End Primary -->
+	
+		<!-- Begin Secondary -->
+		<div class="col" id="secondary">
+		
+		
+		
+			
+			<div class="item" id="contributors">
+				<h5>Contributors</h5>
+				<div class="content">
+					
+					<ul>
+						<li class="thumb"><a href="http://blog.onefps.net/" title="One FPS"><img src="http://25.media.tumblr.com/avatar_5cbec68785a7_30.png" alt="" height="30" width="30"/></a></li>
+						<li class="info">
+							<ul>
+								<li>chartier</li>
+								<li><a href="http://blog.onefps.net/" title="One FPS">One FPS</a></li>
+							</ul>
+						</li>
+					</ul>
+					
+					<ul>
+						<li class="thumb"><a href="http://nikf.org/" title="nikf.org"><img src="http://29.media.tumblr.com/avatar_d2bcffdf9701_30.gif" alt="" height="30" width="30"/></a></li>
+						<li class="info">
+							<ul>
+								<li>nikf</li>
+								<li><a href="http://nikf.org/" title="nikf.org">nikf.org</a></li>
+							</ul>
+						</li>
+					</ul>
+					
+					<ul>
+						<li class="thumb"><a href="http://aayush.me/" title="Penned Thoughts"><img src="http://25.media.tumblr.com/avatar_30f7b6ff1900_30.png" alt="" height="30" width="30"/></a></li>
+						<li class="info">
+							<ul>
+								<li>aayush</li>
+								<li><a href="http://aayush.me/" title="Penned Thoughts">Penned Thoughts</a></li>
+							</ul>
+						</li>
+					</ul>
+					
+					<ul>
+						<li class="thumb"><a href="http://tumblr.christopherdwhite.com/" title="ChristopherDWhite"><img src="http://30.media.tumblr.com/avatar_db0fe6fc2df1_30.png" alt="" height="30" width="30"/></a></li>
+						<li class="info">
+							<ul>
+								<li>christopherdwhite</li>
+								<li><a href="http://tumblr.christopherdwhite.com/" title="ChristopherDWhite">ChristopherDWhite</a></li>
+							</ul>
+						</li>
+					</ul>
+					
+					<ul>
+						<li class="thumb"><a href="http://vafarmboy.com/" title="untitled playlist"><img src="http://assets.tumblr.com/images/default_avatar_30.gif" alt="" height="30" width="30"/></a></li>
+						<li class="info">
+							<ul>
+								<li>vafarmboy</li>
+								<li><a href="http://vafarmboy.com/" title="untitled playlist">untitled playlist</a></li>
+							</ul>
+						</li>
+					</ul>
+					
+				</div>
+			</div>
+			
+
+			
+    		<div class="item" id="twitter">
+    			<h5>Twitter</h5>
+				<div class="content">
+					<div class="tweets" id="tweet"></div>
+					<p><a href="http://twitter.com/finermac" class="follow-me">Follow @finermac on Twitter</a></p>
+				</div>
+			</div>
+			
+
+			
+
+	        
+			
+		
+		
+		
+		
+		</div>
+		<!-- End Secondary -->
+		
+		</div>
+		<!-- End Body Columns -->
+
+		<!-- Begin Footer -->
+		<ul id="footer">
+			<li class="credit"><a href="http://headlinetheme.tumblr.com/" title="Headline: A Free, Customizable Tumblr Theme">Headline</a> by <a href="http://www.airspaceworkshop.com/?utm_source=tumblr_headline&utm_medium=referral&utm_campaign=sitecredit" title="Made by ASWS">Airspace Workshop</a> for <a href="http://www.tumblr.com">Tumblr</a></li>
+			<li class="nav"><a href="http://twitter.com/finermac" class="follow-me"> @finermac</a> / <a href="/submit" title="Submit a Finer Thing">Submit a Finer Thing</a> / <a href="/archive">Archive</a> / <a href="http://mac.finerthingsin.com/rss">RSS</a></li>
+		</ul>
+		<!-- End Footer -->
+
+	</div>
+	<div id="install-theme"><a href="http://www.tumblr.com/theme/9773">Install Headline</a></div>
+	
+		
+		
+		
+
+		
+		
+		
+		
+		
+		
+		
+		<!-- Clicky Integration -->
+		<script type="text/javascript">
+		var clicky = { log: function(){ return; }, goal: function(){ return; }};
+		var clicky_site_id = 122255;
+		(function() {
+		  var s = document.createElement('script');
+		  s.type = 'text/javascript';
+		  s.async = true;
+		  s.src = ( document.location.protocol == 'https:' ? 'https://static.getclicky.com/js' : 'http://static.getclicky.com/js' );
+		  ( document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0] ).appendChild( s );
+		})();
+		</script>
+		<a title="Google Analytics Alternative" href="http://getclicky.com/122255"></a>
+		<noscript><p><img alt="Clicky" width="1" height="1" src="http://in.getclicky.com/122255ns.gif" /></p></noscript>
+		
+
+	<!-- BEGIN TUMBLR CODE --><iframe src="http://assets.tumblr.com/iframe.html?8&src=http%3A%2F%2Fmac.finerthingsin.com%2F&amp;lang=en_US&amp;name=finermac" scrolling="no" width="330" height="25" frameborder="0" style="position:absolute; z-index:1337; top:0px; right:0px; border:0px; background-color:transparent; overflow:hidden;" id="tumblr_controls"></iframe><!--[if IE]><script type="text/javascript">document.getElementById('tumblr_controls').allowTransparency=true;</script><![endif]--><script type="text/javascript">_qoptions={qacct:"p-19UtqE8ngoZbM"};</script><script type="text/javascript" src="http://edge.quantserve.com/quant.js"></script><noscript><img src="http://pixel.quantserve.com/pixel/p-19UtqE8ngoZbM.gif" style="display:none; border-width:0px; height:1px; width:1px;" alt=""/></noscript><!-- END TUMBLR CODE --></body>
+</html>

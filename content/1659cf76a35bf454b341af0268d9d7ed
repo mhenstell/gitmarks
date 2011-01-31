@@ -1,0 +1,572 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+  <title>Accessing the Final Cut Server Database Remotely | Krypted.com</title>
+
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <meta name="generator" content="WordPress 3.0.4" /> <!-- leave this for stats -->
+  <!--[if lte IE 7]><link rel="stylesheet" href="http://krypted.com/wp-content/themes/grey-matter/ie.css" type="text/css" media="screen" /><![endif]-->
+  <link rel="stylesheet" href="http://krypted.com/wp-content/themes/grey-matter/style.css" type="text/css" media="screen" />
+  <link rel="pingback" href="http://krypted.com/xmlrpc.php" />
+  <link rel="alternate" type="application/rss+xml" title="Krypted.com RSS 2.0 Feed" href="http://krypted.com/feed/" />
+  <link rel="alternate" type="text/xml" title="Krypted.com RSS Feed" href="http://krypted.com/feed/rss/" />
+  <link rel="alternate" type="application/atom+xml" title="Krypted.com Atom 0.3" href="http://krypted.com/feed/atom/" />
+  <link rel="Shortcut Icon" href="http://krypted.com/wp-content/themes/grey-matter/img/favicon.ico" type="image/x-icon" />
+      <link rel="alternate" type="application/rss+xml" title="Krypted.com &raquo; Accessing the Final Cut Server Database Remotely Comments Feed" href="http://krypted.com/final-cut-server/accessing-the-final-cut-server-database-remotely/feed/" />
+<link rel='stylesheet' id='openid-css'  href='http://krypted.com/wp-content/plugins/openid/f/openid.css?ver=519' type='text/css' media='all' />
+<link rel='stylesheet' id='wp-email-css'  href='http://krypted.com/wp-content/plugins/wp-email/email-css.css?ver=2.50' type='text/css' media='all' />
+<link rel="stylesheet" href="http://krypted.com/wp-content/plugins/snazzy-archives/snazzy-archives.css" type="text/css" /><script type='text/javascript' src='http://ajax.googleapis.com/ajax/libs/swfobject/2.2/swfobject.js?ver=2.2'></script>
+<script type='text/javascript' src='http://krypted.com/wp-includes/js/jquery/jquery.js?ver=1.4.2'></script>
+<script type='text/javascript' src='http://krypted.com/wp-content/plugins/openid/f/openid.js?ver=519'></script>
+<script type='text/javascript' src='http://krypted.com/wp-includes/js/comment-reply.js?ver=20090102'></script>
+<script type='text/javascript' src='http://krypted.com/wp-content/plugins/snazzy-archives/i/jquery.corner.js?ver=3.0.4'></script>
+<script type='text/javascript'>
+/* <![CDATA[ */
+var SnazzySettings = {
+	snazzy_mini: "0",
+	snazzy_fx: "0",
+	snazzy_corners: "1"
+};
+/* ]]> */
+</script>
+<script type='text/javascript' src='http://krypted.com/wp-content/plugins/snazzy-archives/snazzy-archives.js?ver=3.0.4'></script>
+
+<script type="text/javascript" charset="utf-8">
+
+	/**
+	 * Courtesy of Kimili Flash Embed - Version 2.1.5
+	 * by Michael Bester - http://kimili.com
+	 */
+
+	(function(){
+		try {
+			// Disabling SWFObject's Autohide feature
+			if (typeof swfobject.switchOffAutoHideShow === "function") {
+				swfobject.switchOffAutoHideShow();
+			}
+		} catch(e) {}
+	})();
+</script>
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="http://krypted.com/xmlrpc.php?rsd" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="http://krypted.com/wp-includes/wlwmanifest.xml" /> 
+<link rel='index' title='Krypted.com' href='http://krypted.com/' />
+<link rel='start' title='Hello world!' href='http://krypted.com/uncategorized/hello-world/' />
+<link rel='prev' title='Quick Tips on ZFS' href='http://krypted.com/mac-os-x/quick-tips-on-zfs/' />
+<link rel='next' title='Integrating Mac and Linux with eDirectory' href='http://krypted.com/mac-os-x/integrating-mac-and-linux-with-edirectory/' />
+<meta name="generator" content="WordPress 3.0.4" />
+<link rel='shortlink' href='http://krypted.com/?p=3679' />
+
+<!-- All in One SEO Pack 1.6.13 by Michael Torbert of Semper Fi Web Design[195,272] -->
+<meta name="description" content="Before I get started: By remote, I mean from another machine - I sincerely hope that you will not be opening your Final Cut Server database to the WAN. Â So" />
+<meta name="keywords" content="clustering,final cut server,host all all * trust,listen_address,postgresql,xsan" />
+<link rel="canonical" href="http://krypted.com/final-cut-server/accessing-the-final-cut-server-database-remotely/" />
+<!-- /all in one seo pack -->
+<link rel="stylesheet" href="http://krypted.com/wp-content/plugins/snazzy-archives/snazzy-archives.css" type="text/css" /><meta property="og:site_name" content="Krypted.com" /><meta property="og:title" content="Accessing the Final Cut Server Database Remotely" /><link rel="stylesheet" type="text/css" href="http://krypted.com/wp-content/plugins/wp-recaptcha/recaptcha.css" /> 
+  <!-- Drop-down menus -->
+  <script type='text/javascript'>
+    jQuery(document).ready(function() {
+    jQuery("#dropmenu ul").css({display: "none"}); // Opera Fix
+    jQuery("#dropmenu li").hover(function(){
+          jQuery(this).find('ul:first').css({visibility: "visible",display: "none"}).show(268);
+          },function(){
+          jQuery(this).find('ul:first').css({visibility: "hidden"});
+          });
+    });
+  </script>
+  <!-- Drop-down menus -->
+</head>
+
+<body>
+
+  <div id="wrapper">
+
+    <div id="header">
+
+      <!-- Blog Description -->
+      <div id="blackband_top_left">
+        <h2>Tiny Deathstars of Foulness</h2><!-- <div id="counters"> -->
+<!-- </div> -->      </div>
+
+      <!-- Page Navigation -->
+      <div id="blackband_top_right">
+        <h2>
+        <ul id="dropmenu">
+          <li class="page_item"><a href="http://krypted.com" title="Krypted.com">Home</a></li>
+          <li class="page_item page-item-5076"><a href="http://krypted.com/about-2/" title="Whoami">Whoami</a>
+<ul class='children'>
+	<li class="page_item page-item-5243"><a href="http://krypted.com/about-2/pictures/" title="Pictures">Pictures</a></li>
+	<li class="page_item page-item-5492"><a href="http://krypted.com/about-2/books/" title="Books">Books</a></li>
+</ul>
+</li>
+<li class="page_item page-item-2872"><a href="http://krypted.com/utilities/" title="Tools">Tools</a>
+<ul class='children'>
+	<li class="page_item page-item-2892"><a href="http://krypted.com/utilities/apps/" title="Apps">Apps</a></li>
+	<li class="page_item page-item-5221"><a href="http://krypted.com/utilities/gadgets/" title="Gadgets">Gadgets</a></li>
+	<li class="page_item page-item-5773"><a href="http://krypted.com/utilities/html-encoding-reference/" title="HTML Encoding Reference">HTML Encoding Reference</a></li>
+</ul>
+</li>
+<li class="page_item page-item-3492"><a href="http://krypted.com/shirts/" title="Clothes">Clothes</a></li>
+<li class="page_item page-item-5218"><a href="http://krypted.com/videos/" title="Videos">Videos</a></li>
+<li class="page_item page-item-5339"><a href="http://krypted.com/commands/" title="Commands">Commands</a>
+<ul class='children'>
+	<li class="page_item page-item-2309"><a href="http://krypted.com/commands/xsan-commands/" title="Xsan Commands">Xsan Commands</a></li>
+	<li class="page_item page-item-1201"><a href="http://krypted.com/commands/mac-commands/" title="Mac Commands">Mac Commands</a></li>
+	<li class="page_item page-item-2023"><a href="http://krypted.com/commands/powershell-commands/" title="Powershell Commands">Powershell Commands</a></li>
+	<li class="page_item page-item-5345"><a href="http://krypted.com/commands/windows-commands/" title="Windows Commands">Windows Commands</a></li>
+	<li class="page_item page-item-5353"><a href="http://krypted.com/commands/ftp-commands/" title="FTP Commands">FTP Commands</a></li>
+	<li class="page_item page-item-5356"><a href="http://krypted.com/commands/final-cut-server-commands/" title="Final Cut Server Commands">Final Cut Server Commands</a></li>
+	<li class="page_item page-item-5358"><a href="http://krypted.com/commands/podcast-producer-commands/" title="Podcast Producer Commands">Podcast Producer Commands</a></li>
+	<li class="page_item page-item-5362"><a href="http://krypted.com/commands/amazon-s3cmd-commands/" title="Amazon s3cmd Commands">Amazon s3cmd Commands</a></li>
+</ul>
+</li>
+<li class="page_item page-item-5432"><a href="http://krypted.com/archive/" title="Archive">Archive</a></li>
+        </ul>
+        </h2>
+      </div>
+
+      <!-- Blog Title -->
+      <div id="header_siteheader">
+        <a href="http://krypted.com/feed/rss/" title="Subscribe to the Blog Feed (RSS)" rel="nofollow"><img src="http://krypted.com/wp-content/themes/grey-matter/img/rss_logo.png" alt="Subscribe to the Blog Feed (RSS)" /></a>
+        <h1><a href="http://krypted.com">Krypted.com</a></h1>
+      </div>
+
+      <!-- Header Sidebar -->
+      <div id="header_sidebar">
+        <!-- <div align="center"> -->
+<form method="get" id="searchform" action="http://krypted.com/">
+		<!-- <input type="text" value="" name="s" id="s" size="20" /> -->
+ 		<input type="text" value="Search" name="s" id="s" size="20" onfocus="if (this.value == 'Search') {this.value = '';}" onblur="if (this.value == '') {this.value = 'Search';}" />
+		<input type="submit" id="searchsubmit" value="Find" />
+</form>
+<!-- </div> -->      </div>
+
+    </div>
+<!-- CONTENT -->
+
+  <div id="content">
+
+    	
+    		
+    			<h1>Accessing the Final Cut Server Database Remotely</h1>
+
+    			<p>Before I get started:</p>
+<ul>
+<li>By remote, I mean from another machine &#8211; I sincerely hope that you will not be opening your Final Cut Server database to the WAN. Â So again, please be careful with this as there is no security around the database and you will be limiting access via IP for now.</li>
+<li>This article lays the beginning framework for a series (no promises on when the next in the series will be posted) on clustering the stored role of Final Cut Server, which provides the database (back end functionality) of Final Cut Server.</li>
+<li>All of this is done using built in tools for Final Cut Server.</li>
+<li>Don&#8217;t do this unless you absolutely have to (ie &#8211; you&#8217;ll be clustering your databases using the instructions in this series).</li>
+<li>To my knowledge, absolutely none of this is supported by Apple, (AppleCare, etc).</li>
+<li>Don&#8217;t roll ANY of this into production without fully testing/vetting yourself.</li>
+</ul>
+<p>In order to be able to connect to the database remotely, you first need to enable a listener for PostgreSQL. Â In order to do so, open theÂ /var/db/finalcutserver/data/postgresql.conf file using your favorite text editor. Â Then uncomment out the following line:</p>
+<blockquote><p>listen_addresses = &#8216;*&#8217;</p></blockquote>
+<p>Now, change the * to the IP address you&#8217;d like the daemon to listen on, unless you want it to run on all available IP addresses (or you just have a single IP). Â Close the text editor, saving the file in the process. Â Now, let&#8217;s define which IP addresses can connect to theÂ PostgreSQL database by openingÂ /var/db/finalcutserver/data/pg_hba.conf in your favorite text editor and adding the following line (you can replace the cidr address here with the one that you prefer to use) in the IPv4 local connections section:</p>
+<blockquote><p>host all all 192.168.55.0/24 trust</p></blockquote>
+<p>Now, this is the only real security you are going to have. Â There is no signing or encryption involved with these packets, so do so on a trusted (out of band) interface, don&#8217;t do it on your production network. Â Also, limit the cidr address to allow for the absolute smallest set (if you&#8217;re going to replicate the database between four hosts then consider using a /29 or if there are only two consider using a /30).</p>
+<p>The preferable way to do something like this would actually be to use an SSH tunnel or simply SSH into the remote host. Â It just turns out that when we do that the replication doesn&#8217;t work properly (so far). Â I will continue to look for a better, more secure way, but for now, if you use an out of band network for security then the lack of encryption is fairly mitigated. Â Again, I know that this is not how you would typically want to do it, but for reasons illustrated in future articles it is going to be the first step in the clustering process. Â Also, you will want an out of band network anyway, given that you don&#8217;t want database sync streams to interfere with Xsan metadata traffic (if your Final Cut Server data is stored on a SAN) nor with the bandwidth that end users have into your Final Cut Server environment via your non-Xsan, client facing Ethernet connection.</p>
+<p>Once you have made all of the changes, you can reboot. Â Once done, you can connect and test the connection using standard PostgreSQL tools. Â Or just port scan the port defined (by the amazingly complicated port variable) in the postgresql.conf file.</p>
+<p>Now it&#8217;s time to think about what exactly you&#8217;re looking to get out of your clustered PostgreSQL database. Â For example, in some cases you may be looking for load balancing the back end PostgreSQL functionality (aka stored). Â Whereas in other environments you might actually be looking at simply providing high availability via point in time recovery methods (the server crashes and another pops online a couple of seconds later to keep users chugging along) &#8211; this is the concept of active-active vs active-passive, respectively. Â This series assumes you&#8217;ll be using automated failover, although provided I get around to it, I&#8217;ll try and cover both by forking the series. Â This series also assumes that all hosts are using identical mount points to access data and that you are using two different serial numbers with your Final Cut Servers. Â Both Final Cut Server instances need to be using the same paths to access both data and the database. Â This may be via nfs, symlinks, cvfs or whathaveyou. Â In cases where an operation will not function over a specific protocol/file system I will indicate that; however, when it comes to bottlenecks, I will rely on feedback and further experience to identify those.<br />
+<h3>Similar Articles:</h3>
+<ul class="similar-posts">
+<li><a href="http://krypted.com/final-cut-server/final-cut-server-postgresql-and-fcs/" rel="bookmark" title="November 15, 2008">Final Cut Server: PostgreSQL and FCS</a></li>
+<li><a href="http://krypted.com/final-cut-server/final-cut-server-atom-and-fcs/" rel="bookmark" title="November 17, 2008">Final Cut Server: Atom and FCS</a></li>
+<li><a href="http://krypted.com/final-cut-server/the-final-cut-server-command-line/" rel="bookmark" title="July 7, 2008">The Final Cut Server Command Line</a></li>
+<li><a href="http://krypted.com/final-cut-server/final-cut-server-prepare-media-for-disconnected-use/" rel="bookmark" title="October 20, 2008">Final Cut Server: Prepare Media For Disconnected Use</a></li>
+<li><a href="http://krypted.com/mac-os-x/daylite-39/" rel="bookmark" title="March 31, 2009">Daylite 3.9</a></li>
+</ul>
+<p><!-- Similar Posts took 67.426 ms --></p>
+            				
+          <div id="postmeta">
+
+            Posted on May 9, 2009 at 1:00 am by <a href="http://www.krypted.com" title="Visit Charles&#8217;s website" rel="external">Charles</a> · <a href="http://krypted.com/final-cut-server/accessing-the-final-cut-server-database-remotely/" rel="bookmark" title="Permanent link to this post">Permalink</a>
+<br />
+In:&nbsp;<a href="http://krypted.com/category/final-cut-server/" title="View all posts in Final Cut Server" rel="category tag">Final Cut Server</a>, <a href="http://krypted.com/category/xsan/" title="View all posts in Xsan" rel="category tag">Xsan</a>&#32;·&nbsp;Tagged with:&nbsp;<a href="http://krypted.com/tag/clustering/" rel="tag">clustering</a>, <a href="http://krypted.com/tag/final-cut-server/" rel="tag">Final Cut Server</a>, <a href="http://krypted.com/tag/host-all-all-trust/" rel="tag">host all all * trust</a>, <a href="http://krypted.com/tag/listen_address/" rel="tag">listen_address</a>, <a href="http://krypted.com/tag/postgresql/" rel="tag">PostgreSQL</a>, <a href="http://krypted.com/tag/xsan/" rel="tag">Xsan</a>
+          </div>
+
+          
+<div id="comments">
+
+			          <!--<h2>There are no comments so far.</h2>-->
+      
+     <!-- The end of have_comments() -->
+
+  <!-- ----------------------------------------------------------------------------- -->
+
+	  <div id="respond">
+			<h2>Leave a Reply</h2>
+
+              
+<form action="http://krypted.com/wp-comments-post.php" method="post" id="comment_form">
+
+			<textarea name="comment" id="comment" class="half_width float_left" tabindex="4"></textarea>
+	
+  
+    <label for="author" class="float_left">Name, required</label>
+    <input type="text" name="author" id="author" class="req inpt" value="" tabindex="1" />
+
+    <label for="email" class="float_left">Email (will not be published), required</label>
+    <input type="text" name="email" id="email" class="req inpt" value="" tabindex="2" />
+
+    <label for="url" class="color_light_grey float_left">Website, if present</label>
+    <input type="text" name="url" id="url" class="notreq color_light_grey inpt" value="" tabindex="3" />
+
+  
+  		<span id="openid_comment">
+			<label>
+				<input type="checkbox" id="login_with_openid" name="login_with_openid" checked="checked" />
+				Authenticate this comment using <span class="openid_link">OpenID</span>.			</label>
+		</span>
+		<script type="text/javascript">jQuery(function(){ add_openid_to_comment_form('http://krypted.com/index.php', 'a26c4673cd') })</script>
+		<script type='text/javascript'>
+				var RecaptchaOptions = { theme : 'red', lang : 'en' , tabindex : 5 };
+		</script><script type="text/javascript" src="http://api.recaptcha.net/challenge?k=6LfbqAQAAAAAADUxzsxpA5WpwD08ebbvx2U6h685"></script>
+
+<noscript>
+<iframe src="http://api.recaptcha.net/noscript?k=6LfbqAQAAAAAADUxzsxpA5WpwD08ebbvx2U6h685" height="300" width="500" frameborder="0"></iframe><br/>
+<textarea name="recaptcha_challenge_field" rows="3" cols="40"></textarea>
+<input type="hidden" name="recaptcha_response_field" value="manual_challenge"/>
+</noscript>				<div id="recaptcha-submit-btn-area"></div> 
+				<script type='text/javascript'>
+				var sub = document.getElementById('submit');
+				sub.parentNode.removeChild(sub);
+				document.getElementById('recaptcha-submit-btn-area').appendChild (sub);
+				document.getElementById('submit').tabIndex = 6;
+				if ( typeof _recaptcha_wordpress_savedcomment != 'undefined') {
+						document.getElementById('comment').value = _recaptcha_wordpress_savedcomment;
+				}
+				document.getElementById('recaptcha_table').style.direction = 'ltr';
+				</script>
+				<noscript>
+				 <style type='text/css'>#submit {display:none;}</style>
+				 <input name="submit" type="submit" id="submit-alt" tabindex="6" value="Submit Comment"/> 
+				</noscript>    
+	<div id="comment_form_bottom">
+      <input name="submit" class="button" type="submit" id="submit" tabindex="5" value="Submit Reply" />
+      <div align="right" style="margin: 10px 0 0 0; clear: both;"><a rel="nofollow" id="cancel-comment-reply-link" href="/final-cut-server/accessing-the-final-cut-server-database-remotely/#respond" style="display:none;">Cancel reply</a></div>
+      <input type='hidden' name='comment_post_ID' value='3679' id='comment_post_ID' />
+<input type='hidden' name='comment_parent' id='comment_parent' value='0' />
+			<!--<input type="hidden" name="comment_post_ID" value="3679" />-->
+	</div>
+
+
+</form>
+      </div>
+	        </div>
+
+  
+          <br />
+
+      		<div id="navigation">
+	   	  		<div class="left"><a href="http://krypted.com/mac-os-x/quick-tips-on-zfs/" rel="prev">&laquo; Previous post</a></div>
+	    	  	<div class="right"><a href="http://krypted.com/mac-os-x/integrating-mac-and-linux-with-edirectory/" rel="next">Next post &raquo;</a></div>
+		      </div>
+
+    		
+		
+  </div>
+
+  <div id="sidebar">
+<center><!-- SWFObject embed by Geoff Stearns geoff@deconcept.com http://blog.deconcept.com/swfobject/ --><script type="text/javascript" src="http://krypted.com/wp-content/plugins/wp-cumulus/swfobject.js"></script><div id="wpcumuluscontent3014994"><p>	<a href="http://krypted.com/category/active-directory/" title="View all posts filed under Active Directory">Active Directory</a> (34)<br />
+	<a href="http://krypted.com/category/articles-and-books/" title="View all posts filed under Articles and Books">Articles and Books</a> (64)<br />
+	<a href="http://krypted.com/category/business/" title="View all posts filed under Business">Business</a> (90)<br />
+	<a href="http://krypted.com/category/certifications/" title="View all posts filed under certifications">certifications</a> (10)<br />
+	<a href="http://krypted.com/category/cloud/" title="View all posts filed under cloud">cloud</a> (4)<br />
+	<a href="http://krypted.com/category/consulting/" title="View all posts filed under Consulting">Consulting</a> (55)<br />
+	<a href="http://krypted.com/category/filemaker/" title="View all posts filed under FileMaker">FileMaker</a> (7)<br />
+	<a href="http://krypted.com/category/final-cut-server/" title="View all posts filed under Final Cut Server">Final Cut Server</a> (42)<br />
+	<a href="http://krypted.com/category/football/" title="View all posts filed under Football">Football</a> (65)<br />
+	<a href="http://krypted.com/category/home-automation/" title="View all posts filed under Home Automation">Home Automation</a> (9)<br />
+	<a href="http://krypted.com/category/interviewing/" title="View all posts filed under Interviewing">Interviewing</a> (22)<br />
+	<a href="http://krypted.com/category/iphone/" title="View all posts filed under iPhone">iPhone</a> (55)<br />
+	<a href="http://krypted.com/category/kerio/" title="View all posts filed under Kerio">Kerio</a> (18)<br />
+	<a href="http://krypted.com/category/mac-os-x/" title="View all posts filed under Mac OS X">Mac OS X</a> (613)<br />
+	<a href="http://krypted.com/category/mac-os-x-server/" title="View all posts filed under Mac OS X Server">Mac OS X Server</a> (447)<br />
+	<a href="http://krypted.com/category/mac-security/" title="View all posts filed under Mac Security">Mac Security</a> (250)<br />
+	<a href="http://krypted.com/category/mass-deployment/" title="View all posts filed under Mass Deployment">Mass Deployment</a> (165)<br />
+	<a href="http://krypted.com/category/microsoft-exchange-server/" title="View all posts filed under Microsoft Exchange Server">Microsoft Exchange Server</a> (37)<br />
+	<a href="http://krypted.com/category/mobileme/" title="View all posts filed under MobileMe">MobileMe</a> (6)<br />
+	<a href="http://krypted.com/category/network-infrastructure/" title="View all posts filed under Network Infrastructure">Network Infrastructure</a> (57)<br />
+	<a href="http://krypted.com/category/network-printing/" title="View all posts filed under Network Printing">Network Printing</a> (3)<br />
+	<a href="http://krypted.com/category/on-the-road/" title="View all posts filed under On the Road">On the Road</a> (57)<br />
+	<a href="http://krypted.com/category/personal/" title="View all posts filed under personal">personal</a> (120)<br />
+	<a href="http://krypted.com/category/public-speaking/" title="View all posts filed under public speaking">public speaking</a> (32)<br />
+	<a href="http://krypted.com/category/sites/" title="View all posts filed under sites">sites</a> (132)<br />
+	<a href="http://krypted.com/category/social-networking/" title="View all posts filed under Social Networking">Social Networking</a> (26)<br />
+	<a href="http://krypted.com/category/sql/" title="View all posts filed under SQL">SQL</a> (8)<br />
+	<a href="http://krypted.com/category/time-machine/" title="View all posts filed under Time Machine">Time Machine</a> (3)<br />
+	<a href="http://krypted.com/category/travel/" title="View all posts filed under Travel">Travel</a> (10)<br />
+	<a href="http://krypted.com/category/ubuntu/" title="View all posts filed under Ubuntu">Ubuntu</a> (81)<br />
+	<a href="http://krypted.com/category/uncategorized/" title="View all posts filed under Uncategorized">Uncategorized</a> (37)<br />
+	<a href="http://krypted.com/category/unix/" title="View all posts filed under Unix">Unix</a> (134)<br />
+	<a href="http://krypted.com/category/vmware/" title="View all posts filed under VMware">VMware</a> (42)<br />
+	<a href="http://krypted.com/category/windows-server/" title="View all posts filed under Windows Server">Windows Server</a> (78)<br />
+	<a href="http://krypted.com/category/windows-xp/" title="View all posts filed under Windows XP">Windows XP</a> (97)<br />
+	<a href="http://krypted.com/category/wordpress/" title="View all posts filed under WordPress">WordPress</a> (33)<br />
+	<a href="http://krypted.com/category/xsan/" title="View all posts filed under Xsan">Xsan</a> (138)<br />
+</p><p>WP Cumulus Flash tag cloud by <a href="http://www.roytanck.com">Roy Tanck</a> and <a href="http://lukemorton.co.uk/">Luke Morton</a> requires <a href="http://www.macromedia.com/go/getflashplayer">Flash Player</a> 9 or better.</p></div><script type="text/javascript">var so5122611 = new SWFObject("http://krypted.com/wp-content/plugins/wp-cumulus/tagcloud.swf?r=3018624", "tagcloudflash", "240", "240", "9", "#000044");so5122611.addParam("wmode", "transparent");so5122611.addParam("allowScriptAccess", "always");so5122611.addVariable("tcolor", "0x666666");so5122611.addVariable("tcolor2", "0x666666");so5122611.addVariable("hicolor", "0x333333");so5122611.addVariable("tspeed", "80");so5122611.addVariable("distr", "true");so5122611.addVariable("mode", "cats");so5122611.addVariable("categories", "%09%3Ca+href%3D%22http%3A%2F%2Fkrypted.com%2Fcategory%2Factive-directory%2F%22+title%3D%22View+all+posts+filed+under+Active+Directory%22%3EActive+Directory%3C%2Fa%3E+%2834%29%3Cbr+%2F%3E%0A%09%3Ca+href%3D%22http%3A%2F%2Fkrypted.com%2Fcategory%2Farticles-and-books%2F%22+title%3D%22View+all+posts+filed+under+Articles+and+Books%22%3EArticles+and+Books%3C%2Fa%3E+%2864%29%3Cbr+%2F%3E%0A%09%3Ca+href%3D%22http%3A%2F%2Fkrypted.com%2Fcategory%2Fbusiness%2F%22+title%3D%22View+all+posts+filed+under+Business%22%3EBusiness%3C%2Fa%3E+%2890%29%3Cbr+%2F%3E%0A%09%3Ca+href%3D%22http%3A%2F%2Fkrypted.com%2Fcategory%2Fcertifications%2F%22+title%3D%22View+all+posts+filed+under+certifications%22%3Ecertifications%3C%2Fa%3E+%2810%29%3Cbr+%2F%3E%0A%09%3Ca+href%3D%22http%3A%2F%2Fkrypted.com%2Fcategory%2Fcloud%2F%22+title%3D%22View+all+posts+filed+under+cloud%22%3Ecloud%3C%2Fa%3E+%284%29%3Cbr+%2F%3E%0A%09%3Ca+href%3D%22http%3A%2F%2Fkrypted.com%2Fcategory%2Fconsulting%2F%22+title%3D%22View+all+posts+filed+under+Consulting%22%3EConsulting%3C%2Fa%3E+%2855%29%3Cbr+%2F%3E%0A%09%3Ca+href%3D%22http%3A%2F%2Fkrypted.com%2Fcategory%2Ffilemaker%2F%22+title%3D%22View+all+posts+filed+under+FileMaker%22%3EFileMaker%3C%2Fa%3E+%287%29%3Cbr+%2F%3E%0A%09%3Ca+href%3D%22http%3A%2F%2Fkrypted.com%2Fcategory%2Ffinal-cut-server%2F%22+title%3D%22View+all+posts+filed+under+Final+Cut+Server%22%3EFinal+Cut+Server%3C%2Fa%3E+%2842%29%3Cbr+%2F%3E%0A%09%3Ca+href%3D%22http%3A%2F%2Fkrypted.com%2Fcategory%2Ffootball%2F%22+title%3D%22View+all+posts+filed+under+Football%22%3EFootball%3C%2Fa%3E+%2865%29%3Cbr+%2F%3E%0A%09%3Ca+href%3D%22http%3A%2F%2Fkrypted.com%2Fcategory%2Fhome-automation%2F%22+title%3D%22View+all+posts+filed+under+Home+Automation%22%3EHome+Automation%3C%2Fa%3E+%289%29%3Cbr+%2F%3E%0A%09%3Ca+href%3D%22http%3A%2F%2Fkrypted.com%2Fcategory%2Finterviewing%2F%22+title%3D%22View+all+posts+filed+under+Interviewing%22%3EInterviewing%3C%2Fa%3E+%2822%29%3Cbr+%2F%3E%0A%09%3Ca+href%3D%22http%3A%2F%2Fkrypted.com%2Fcategory%2Fiphone%2F%22+title%3D%22View+all+posts+filed+under+iPhone%22%3EiPhone%3C%2Fa%3E+%2855%29%3Cbr+%2F%3E%0A%09%3Ca+href%3D%22http%3A%2F%2Fkrypted.com%2Fcategory%2Fkerio%2F%22+title%3D%22View+all+posts+filed+under+Kerio%22%3EKerio%3C%2Fa%3E+%2818%29%3Cbr+%2F%3E%0A%09%3Ca+href%3D%22http%3A%2F%2Fkrypted.com%2Fcategory%2Fmac-os-x%2F%22+title%3D%22View+all+posts+filed+under+Mac+OS+X%22%3EMac+OS+X%3C%2Fa%3E+%28613%29%3Cbr+%2F%3E%0A%09%3Ca+href%3D%22http%3A%2F%2Fkrypted.com%2Fcategory%2Fmac-os-x-server%2F%22+title%3D%22View+all+posts+filed+under+Mac+OS+X+Server%22%3EMac+OS+X+Server%3C%2Fa%3E+%28447%29%3Cbr+%2F%3E%0A%09%3Ca+href%3D%22http%3A%2F%2Fkrypted.com%2Fcategory%2Fmac-security%2F%22+title%3D%22View+all+posts+filed+under+Mac+Security%22%3EMac+Security%3C%2Fa%3E+%28250%29%3Cbr+%2F%3E%0A%09%3Ca+href%3D%22http%3A%2F%2Fkrypted.com%2Fcategory%2Fmass-deployment%2F%22+title%3D%22View+all+posts+filed+under+Mass+Deployment%22%3EMass+Deployment%3C%2Fa%3E+%28165%29%3Cbr+%2F%3E%0A%09%3Ca+href%3D%22http%3A%2F%2Fkrypted.com%2Fcategory%2Fmicrosoft-exchange-server%2F%22+title%3D%22View+all+posts+filed+under+Microsoft+Exchange+Server%22%3EMicrosoft+Exchange+Server%3C%2Fa%3E+%2837%29%3Cbr+%2F%3E%0A%09%3Ca+href%3D%22http%3A%2F%2Fkrypted.com%2Fcategory%2Fmobileme%2F%22+title%3D%22View+all+posts+filed+under+MobileMe%22%3EMobileMe%3C%2Fa%3E+%286%29%3Cbr+%2F%3E%0A%09%3Ca+href%3D%22http%3A%2F%2Fkrypted.com%2Fcategory%2Fnetwork-infrastructure%2F%22+title%3D%22View+all+posts+filed+under+Network+Infrastructure%22%3ENetwork+Infrastructure%3C%2Fa%3E+%2857%29%3Cbr+%2F%3E%0A%09%3Ca+href%3D%22http%3A%2F%2Fkrypted.com%2Fcategory%2Fnetwork-printing%2F%22+title%3D%22View+all+posts+filed+under+Network+Printing%22%3ENetwork+Printing%3C%2Fa%3E+%283%29%3Cbr+%2F%3E%0A%09%3Ca+href%3D%22http%3A%2F%2Fkrypted.com%2Fcategory%2Fon-the-road%2F%22+title%3D%22View+all+posts+filed+under+On+the+Road%22%3EOn+the+Road%3C%2Fa%3E+%2857%29%3Cbr+%2F%3E%0A%09%3Ca+href%3D%22http%3A%2F%2Fkrypted.com%2Fcategory%2Fpersonal%2F%22+title%3D%22View+all+posts+filed+under+personal%22%3Epersonal%3C%2Fa%3E+%28120%29%3Cbr+%2F%3E%0A%09%3Ca+href%3D%22http%3A%2F%2Fkrypted.com%2Fcategory%2Fpublic-speaking%2F%22+title%3D%22View+all+posts+filed+under+public+speaking%22%3Epublic+speaking%3C%2Fa%3E+%2832%29%3Cbr+%2F%3E%0A%09%3Ca+href%3D%22http%3A%2F%2Fkrypted.com%2Fcategory%2Fsites%2F%22+title%3D%22View+all+posts+filed+under+sites%22%3Esites%3C%2Fa%3E+%28132%29%3Cbr+%2F%3E%0A%09%3Ca+href%3D%22http%3A%2F%2Fkrypted.com%2Fcategory%2Fsocial-networking%2F%22+title%3D%22View+all+posts+filed+under+Social+Networking%22%3ESocial+Networking%3C%2Fa%3E+%2826%29%3Cbr+%2F%3E%0A%09%3Ca+href%3D%22http%3A%2F%2Fkrypted.com%2Fcategory%2Fsql%2F%22+title%3D%22View+all+posts+filed+under+SQL%22%3ESQL%3C%2Fa%3E+%288%29%3Cbr+%2F%3E%0A%09%3Ca+href%3D%22http%3A%2F%2Fkrypted.com%2Fcategory%2Ftime-machine%2F%22+title%3D%22View+all+posts+filed+under+Time+Machine%22%3ETime+Machine%3C%2Fa%3E+%283%29%3Cbr+%2F%3E%0A%09%3Ca+href%3D%22http%3A%2F%2Fkrypted.com%2Fcategory%2Ftravel%2F%22+title%3D%22View+all+posts+filed+under+Travel%22%3ETravel%3C%2Fa%3E+%2810%29%3Cbr+%2F%3E%0A%09%3Ca+href%3D%22http%3A%2F%2Fkrypted.com%2Fcategory%2Fubuntu%2F%22+title%3D%22View+all+posts+filed+under+Ubuntu%22%3EUbuntu%3C%2Fa%3E+%2881%29%3Cbr+%2F%3E%0A%09%3Ca+href%3D%22http%3A%2F%2Fkrypted.com%2Fcategory%2Funcategorized%2F%22+title%3D%22View+all+posts+filed+under+Uncategorized%22%3EUncategorized%3C%2Fa%3E+%2837%29%3Cbr+%2F%3E%0A%09%3Ca+href%3D%22http%3A%2F%2Fkrypted.com%2Fcategory%2Funix%2F%22+title%3D%22View+all+posts+filed+under+Unix%22%3EUnix%3C%2Fa%3E+%28134%29%3Cbr+%2F%3E%0A%09%3Ca+href%3D%22http%3A%2F%2Fkrypted.com%2Fcategory%2Fvmware%2F%22+title%3D%22View+all+posts+filed+under+VMware%22%3EVMware%3C%2Fa%3E+%2842%29%3Cbr+%2F%3E%0A%09%3Ca+href%3D%22http%3A%2F%2Fkrypted.com%2Fcategory%2Fwindows-server%2F%22+title%3D%22View+all+posts+filed+under+Windows+Server%22%3EWindows+Server%3C%2Fa%3E+%2878%29%3Cbr+%2F%3E%0A%09%3Ca+href%3D%22http%3A%2F%2Fkrypted.com%2Fcategory%2Fwindows-xp%2F%22+title%3D%22View+all+posts+filed+under+Windows+XP%22%3EWindows+XP%3C%2Fa%3E+%2897%29%3Cbr+%2F%3E%0A%09%3Ca+href%3D%22http%3A%2F%2Fkrypted.com%2Fcategory%2Fwordpress%2F%22+title%3D%22View+all+posts+filed+under+WordPress%22%3EWordPress%3C%2Fa%3E+%2833%29%3Cbr+%2F%3E%0A%09%3Ca+href%3D%22http%3A%2F%2Fkrypted.com%2Fcategory%2Fxsan%2F%22+title%3D%22View+all+posts+filed+under+Xsan%22%3EXsan%3C%2Fa%3E+%28138%29%3Cbr+%2F%3E%0A");so5122611.write("wpcumuluscontent3014994");</script><center><a href="http://click.linksynergy.com/fs-bin/click?id=JfGvTQMSg2k&offerid=146261.10005760&type=4&subid=0"><IMG alt="" border="0" src="http://images.apple.com/itunesaffiliates/US/generic/GreyFREEApp_125x125.jpg"></a><IMG border="0" width="1" height="1" src="http://ad.linksynergy.com/fs-bin/show?id=JfGvTQMSg2k&bids=146261.10005760&type=4&subid=0"></center><br><br>
+<center><iframe src="http://rcm.amazon.com/e/cm?lt1=_blank&bc1= 000000&IS2=1&bg1= cccccc&fc1=cccccc&lc1=cccccc&t=charlesedge-20&o=1&p=8&l=as1&m=amazon&f=ifr&md=10FE9736YVPPT7A0FBG2&asins=1430224436" style="width:120px;height:240px;" scrolling="no" marginwidth="0" marginheight="0" frameborder="0"></iframe><br>
+<center>
+<iframe src="http://rcm.amazon.com/e/cm?lt1=_blank&bc1= 000000&IS2=1&bg1=  CCCCCC&fc1=cccccc&lc1=cccccc&t=charlesedge-20&o=1&p=8&l=as1&m=amazon&f=ifr&md=10FE9736YVPPT7A0FBG2&asins=1430227729" style="width:120px;height:240px;" scrolling="no" marginwidth="0" marginheight="0" frameborder="0"></iframe><br>
+<center><a href="http://click.linksynergy.com/fs-bin/click?id=JfGvTQMSg2k&offerid=173444.10000027&type=4&subid=0"><IMG alt="Smarthome, Inc." border="0" src="http://www.smarthome.com/lsbanners/Austinair_jr.gif"></a><IMG border="0" width="1" height="1" src="http://ad.linksynergy.com/fs-bin/show?id=JfGvTQMSg2k&bids=173444.10000027&type=4&subid=0"></center><br><center>
+</form><iframe src="http://rcm.amazon.com/e/cm?lt1=_blank&bc1=  000000&IS2=1&bg1= CCCCCC&fc1=cccccc&lc1=cccccc&t=charlesedge-20&o=1&p=8&l=as1&m=amazon&f=ifr&md=10FE9736YVPPT7A0FBG2&asins=1430227303" style="width:120px;height:240px;" scrolling="no" marginwidth="0" marginheight="0" frameborder="0"></iframe><br><br>
+<iframe src="http://rcm.amazon.com/e/cm?lt1=_blank&bc1= 000000&IS2=1&nou=1&bg1= CCCCCC&fc1=cccccc&lc1=cccccc&t=charlesedge-20&o=1&p=8&l=as1&m=amazon&f=ifr&md=10FE9736YVPPT7A0FBG2&asins=1590599896" style="width:120px;height:240px;" scrolling="no" marginwidth="0" marginheight="0" frameborder="0"></iframe><br><br>
+<iframe src="http://rcm.amazon.com/e/cm?lt1=_blank&bc1= 000000&IS2=1&bg1= CCCCCC&fc1=cccccc&lc1=cccccc&t=charlesedge-20&o=1&p=8&l=as1&m=amazon&f=ifr&md=10FE9736YVPPT7A0FBG2&asins=1933097140" style="width:120px;height:240px;" scrolling="no" marginwidth="0" marginheight="0" frameborder="0"></iframe><br><br><a href="http://click.linksynergy.com/fs-bin/click?id=JfGvTQMSg2k&offerid=41019.10000012&subid=0&type=4"><IMG border="0"   alt="Tech Depot - An Office Depot Co." src="http://ad.linksynergy.com/fs-bin/show?id=JfGvTQMSg2k&bids=41019.10000012&subid=0&type=4&gridnum=6"></a><br><br>
+<iframe src="http://rcm.amazon.com/e/cm?lt1=_blank&bc1= 000000&IS2=1&bg1= CCCCCC&fc1=CCCCCC&lc1=CCCCCC&t=charlesedge-20&o=1&p=8&l=as1&m=amazon&f=ifr&md=10FE9736YVPPT7A0FBG2&asins=1430230096" style="width:120px;height:240px;" scrolling="no" marginwidth="0" marginheight="0" frameborder="0"></iframe><br><br>
+<form action="https://www.paypal.com/cgi-bin/webscr" method="post">
+<input type="hidden" name="cmd" value="_s-xclick">
+<input type="hidden" name="encrypted" value="-----BEGIN PKCS7-----MIIHLwYJKoZIhvcNAQcEoIIHIDCCBxwCAQExggEwMIIBLAIBADCBlDCBjjELMAkGA1UEBhMCVVMxCzAJBgNVBAgTAkNBMRYwFAYDVQQHEw1Nb3VudGFpbiBWaWV3MRQwEgYDVQQKEwtQYXlQYWwgSW5jLjETMBEGA1UECxQKbGl2ZV9jZXJ0czERMA8GA1UEAxQIbGl2ZV9hcGkxHDAaBgkqhkiG9w0BCQEWDXJlQHBheXBhbC5jb20CAQAwDQYJKoZIhvcNAQEBBQAEgYAl1TrATK7UPCJL+sioWWTyZ0CkZrf4JlY5k2B3883dNNb3gKSWT+8H6OlXEVueAGJv5A4oUzgCuhjDKKw5z3EjwPEfF/E2qLYm7Bu+mOY/5P+FRZU7AN8U3sfcbOYjvDbapI6RPVFk0grfWyZysdBQ6sSLI8PceRRp4OFQ0DaVODELMAkGBSsOAwIaBQAwgawGCSqGSIb3DQEHATAUBggqhkiG9w0DBwQI7rhyeCB3nsSAgYiWjbT/aS7cG6TpwUyc7VvJrypeqXLH4ve7/ENb18M/rY0PtQtcHG13PCz9QNuYz1HZdVF8cX+WHH5gdj/pIBJd/+3lpsweIjuGljfRmFSbftyZdsShs1zDXWbnDYztjlS8dEBVDjJR013tIaFQ2AP9N9d5UC9qiv5mfCnzfs2Ob8iFtaIQnMVaoIIDhzCCA4MwggLsoAMCAQICAQAwDQYJKoZIhvcNAQEFBQAwgY4xCzAJBgNVBAYTAlVTMQswCQYDVQQIEwJDQTEWMBQGA1UEBxMNTW91bnRhaW4gVmlldzEUMBIGA1UEChMLUGF5UGFsIEluYy4xEzARBgNVBAsUCmxpdmVfY2VydHMxETAPBgNVBAMUCGxpdmVfYXBpMRwwGgYJKoZIhvcNAQkBFg1yZUBwYXlwYWwuY29tMB4XDTA0MDIxMzEwMTMxNVoXDTM1MDIxMzEwMTMxNVowgY4xCzAJBgNVBAYTAlVTMQswCQYDVQQIEwJDQTEWMBQGA1UEBxMNTW91bnRhaW4gVmlldzEUMBIGA1UEChMLUGF5UGFsIEluYy4xEzARBgNVBAsUCmxpdmVfY2VydHMxETAPBgNVBAMUCGxpdmVfYXBpMRwwGgYJKoZIhvcNAQkBFg1yZUBwYXlwYWwuY29tMIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDBR07d/ETMS1ycjtkpkvjXZe9k+6CieLuLsPumsJ7QC1odNz3sJiCbs2wC0nLE0uLGaEtXynIgRqIddYCHx88pb5HTXv4SZeuv0Rqq4+axW9PLAAATU8w04qqjaSXgbGLP3NmohqM6bV9kZZwZLR/klDaQGo1u9uDb9lr4Yn+rBQIDAQABo4HuMIHrMB0GA1UdDgQWBBSWn3y7xm8XvVk/UtcKG+wQ1mSUazCBuwYDVR0jBIGzMIGwgBSWn3y7xm8XvVk/UtcKG+wQ1mSUa6GBlKSBkTCBjjELMAkGA1UEBhMCVVMxCzAJBgNVBAgTAkNBMRYwFAYDVQQHEw1Nb3VudGFpbiBWaWV3MRQwEgYDVQQKEwtQYXlQYWwgSW5jLjETMBEGA1UECxQKbGl2ZV9jZXJ0czERMA8GA1UEAxQIbGl2ZV9hcGkxHDAaBgkqhkiG9w0BCQEWDXJlQHBheXBhbC5jb22CAQAwDAYDVR0TBAUwAwEB/zANBgkqhkiG9w0BAQUFAAOBgQCBXzpWmoBa5e9fo6ujionW1hUhPkOBakTr3YCDjbYfvJEiv/2P+IobhOGJr85+XHhN0v4gUkEDI8r2/rNk1m0GA8HKddvTjyGw/XqXa+LSTlDYkqI8OwR8GEYj4efEtcRpRYBxV8KxAW93YDWzFGvruKnnLbDAF6VR5w/cCMn5hzGCAZowggGWAgEBMIGUMIGOMQswCQYDVQQGEwJVUzELMAkGA1UECBMCQ0ExFjAUBgNVBAcTDU1vdW50YWluIFZpZXcxFDASBgNVBAoTC1BheVBhbCBJbmMuMRMwEQYDVQQLFApsaXZlX2NlcnRzMREwDwYDVQQDFAhsaXZlX2FwaTEcMBoGCSqGSIb3DQEJARYNcmVAcGF5cGFsLmNvbQIBADAJBgUrDgMCGgUAoF0wGAYJKoZIhvcNAQkDMQsGCSqGSIb3DQEHATAcBgkqhkiG9w0BCQUxDxcNMDkwNTA2MDI0OTQ1WjAjBgkqhkiG9w0BCQQxFgQUAwbsRKcfx7cBYSUfm9DQ4Y+O/K0wDQYJKoZIhvcNAQEBBQAEgYCCvYFe8S/otcJlDnRP2M8OysnFHWZ2vZEGOJd30Cjl9OO2Glys2BM9O1jaA9GxgIdNIK0NeyeBJvLQ5vqWL1BlnudS67Rl6rM0yn7w4FXYxG7Et2HquS1pZCoM51NEcnagf3mcOFjxXrrXX+pDNSak25FkzPGmVScJ2V7kZYvMTQ==-----END PKCS7-----
+">
+<input type="image" src="http://krypted.com/wp-content/themes/librio/images/Donate.png" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+<img alt="" border="0" src="https://www.paypal.com/en_US/i/scr/pixel.gif" width="1" height="0"><br><br><br>
+
+<a href="http://twitter.com/cedge318"><img src="http://krypted.com/wp-content/themes/librio/images/twitter.png" title="Krypted@Twitter" width="100" height="40" /></a><br/><br><br>
+
+<a href="http://www.facebook.com/krypted"><img src="http://krypted.com/Images/facebook_logo.png" title="By: Krypted.com" width="52" height="52" /></a><br/><br><br>
+
+<a href="http://www.linkedin.com/profile?viewProfile=&key=213231"><img src="http://krypted.com/Images/linkedin-badge.gif" title="Krypted@LinkedIn" width="100" height="20" /></a><br /><br>
+
+<a href="http://www.youtube.com/user/krypted318"><img src="http://krypted.com/Images/youtubebadge1.gif" title="Krypted@YouTube" width="100" height="40" /></a><br/><br>
+
+<a href="http://www.flickr.com/users/krypted"><img src="http://krypted.com/Images/flickr.png" title="Krypted@Flickr" width="100" height="40" /></a>
+
+	  <ul>
+          <li>
+        <h2>Recent Posts</h2>
+        <ul>
+          	<li><a href='http://krypted.com/business/active-announcement-in-the-morning/' title='Active Announcement in the Morning!'>Active Announcement in the Morning!</a></li>
+	<li><a href='http://krypted.com/xsan/the-qlogic-command-line/' title='The Qlogic Command Line'>The Qlogic Command Line</a></li>
+	<li><a href='http://krypted.com/iphone/iphone-life-article/' title='iPhone Life Article'>iPhone Life Article</a></li>
+	<li><a href='http://krypted.com/articles-and-books/law-firms-and-ipads/' title='Law Firms and iPads'>Law Firms and iPads</a></li>
+	<li><a href='http://krypted.com/xsan/adding-xsan-clients-to-stornext-environments/' title='Adding Xsan Clients to StorNext Environments'>Adding Xsan Clients to StorNext Environments</a></li>
+	<li><a href='http://krypted.com/mac-os-x/the-mac-os-x-app-store-managed-environments/' title='The Mac OS X App Store &amp; Managed Environments'>The Mac OS X App Store &#038; Managed Environments</a></li>
+	<li><a href='http://krypted.com/vmware/registering-vms-w-vmware-esx-esxi/' title='Registering VMs w/ VMware ESX &amp; ESXi'>Registering VMs w/ VMware ESX &#038; ESXi</a></li>
+	<li><a href='http://krypted.com/mac-os-x/screen-sharing-through-absolute-manage/' title='Screen Sharing Through Absolute Manage'>Screen Sharing Through Absolute Manage</a></li>
+	<li><a href='http://krypted.com/personal/the-most-elite-hax0r-evah/' title='The Most Elite Hax0r Evah!'>The Most Elite Hax0r Evah!</a></li>
+	<li><a href='http://krypted.com/personal/5-rules-for-writing-bots-in-games/' title='10 Tips for Writing Gaming Bots'>10 Tips for Writing Gaming Bots</a></li>
+        </ul>
+      </li>
+			<li>
+				<h2>Categories</h2>
+				<ul>
+						<li class="cat-item cat-item-3"><a href="http://krypted.com/category/active-directory/" title="View all posts filed under Active Directory">Active Directory</a>
+</li>
+	<li class="cat-item cat-item-4"><a href="http://krypted.com/category/articles-and-books/" title="View all posts filed under Articles and Books">Articles and Books</a>
+</li>
+	<li class="cat-item cat-item-5"><a href="http://krypted.com/category/business/" title="View all posts filed under Business">Business</a>
+</li>
+	<li class="cat-item cat-item-6"><a href="http://krypted.com/category/certifications/" title="View all posts filed under certifications">certifications</a>
+</li>
+	<li class="cat-item cat-item-501"><a href="http://krypted.com/category/cloud/" title="View all posts filed under cloud">cloud</a>
+</li>
+	<li class="cat-item cat-item-7"><a href="http://krypted.com/category/consulting/" title="View all posts filed under Consulting">Consulting</a>
+</li>
+	<li class="cat-item cat-item-9"><a href="http://krypted.com/category/filemaker/" title="View all posts filed under FileMaker">FileMaker</a>
+</li>
+	<li class="cat-item cat-item-10"><a href="http://krypted.com/category/final-cut-server/" title="View all posts filed under Final Cut Server">Final Cut Server</a>
+</li>
+	<li class="cat-item cat-item-11"><a href="http://krypted.com/category/football/" title="View all posts filed under Football">Football</a>
+</li>
+	<li class="cat-item cat-item-12"><a href="http://krypted.com/category/home-automation/" title="View all posts filed under Home Automation">Home Automation</a>
+</li>
+	<li class="cat-item cat-item-13"><a href="http://krypted.com/category/interviewing/" title="View all posts filed under Interviewing">Interviewing</a>
+</li>
+	<li class="cat-item cat-item-14"><a href="http://krypted.com/category/iphone/" title="View all posts filed under iPhone">iPhone</a>
+</li>
+	<li class="cat-item cat-item-15"><a href="http://krypted.com/category/kerio/" title="View all posts filed under Kerio">Kerio</a>
+</li>
+	<li class="cat-item cat-item-16"><a href="http://krypted.com/category/mac-os-x/" title="View all posts filed under Mac OS X">Mac OS X</a>
+</li>
+	<li class="cat-item cat-item-17"><a href="http://krypted.com/category/mac-os-x-server/" title="View all posts filed under Mac OS X Server">Mac OS X Server</a>
+</li>
+	<li class="cat-item cat-item-18"><a href="http://krypted.com/category/mac-security/" title="View all posts filed under Mac Security">Mac Security</a>
+</li>
+	<li class="cat-item cat-item-19"><a href="http://krypted.com/category/mass-deployment/" title="View all posts filed under Mass Deployment">Mass Deployment</a>
+</li>
+	<li class="cat-item cat-item-20"><a href="http://krypted.com/category/microsoft-exchange-server/" title="View all posts filed under Microsoft Exchange Server">Microsoft Exchange Server</a>
+</li>
+	<li class="cat-item cat-item-21"><a href="http://krypted.com/category/mobileme/" title="View all posts filed under MobileMe">MobileMe</a>
+</li>
+	<li class="cat-item cat-item-22"><a href="http://krypted.com/category/network-infrastructure/" title="View all posts filed under Network Infrastructure">Network Infrastructure</a>
+</li>
+	<li class="cat-item cat-item-23"><a href="http://krypted.com/category/network-printing/" title="View all posts filed under Network Printing">Network Printing</a>
+</li>
+	<li class="cat-item cat-item-24"><a href="http://krypted.com/category/on-the-road/" title="View all posts filed under On the Road">On the Road</a>
+</li>
+	<li class="cat-item cat-item-25"><a href="http://krypted.com/category/personal/" title="View all posts filed under personal">personal</a>
+</li>
+	<li class="cat-item cat-item-26"><a href="http://krypted.com/category/public-speaking/" title="View all posts filed under public speaking">public speaking</a>
+</li>
+	<li class="cat-item cat-item-27"><a href="http://krypted.com/category/sites/" title="View all posts filed under sites">sites</a>
+</li>
+	<li class="cat-item cat-item-28"><a href="http://krypted.com/category/social-networking/" title="View all posts filed under Social Networking">Social Networking</a>
+</li>
+	<li class="cat-item cat-item-29"><a href="http://krypted.com/category/sql/" title="View all posts filed under SQL">SQL</a>
+</li>
+	<li class="cat-item cat-item-30"><a href="http://krypted.com/category/time-machine/" title="View all posts filed under Time Machine">Time Machine</a>
+</li>
+	<li class="cat-item cat-item-31"><a href="http://krypted.com/category/travel/" title="View all posts filed under Travel">Travel</a>
+</li>
+	<li class="cat-item cat-item-32"><a href="http://krypted.com/category/ubuntu/" title="View all posts filed under Ubuntu">Ubuntu</a>
+</li>
+	<li class="cat-item cat-item-1"><a href="http://krypted.com/category/uncategorized/" title="View all posts filed under Uncategorized">Uncategorized</a>
+</li>
+	<li class="cat-item cat-item-33"><a href="http://krypted.com/category/unix/" title="View all posts filed under Unix">Unix</a>
+</li>
+	<li class="cat-item cat-item-34"><a href="http://krypted.com/category/vmware/" title="View all posts filed under VMware">VMware</a>
+</li>
+	<li class="cat-item cat-item-35"><a href="http://krypted.com/category/windows-server/" title="View all posts filed under Windows Server">Windows Server</a>
+</li>
+	<li class="cat-item cat-item-36"><a href="http://krypted.com/category/windows-xp/" title="View all posts filed under Windows XP">Windows XP</a>
+</li>
+	<li class="cat-item cat-item-37"><a href="http://krypted.com/category/wordpress/" title="View all posts filed under WordPress">WordPress</a>
+</li>
+	<li class="cat-item cat-item-38"><a href="http://krypted.com/category/xsan/" title="View all posts filed under Xsan">Xsan</a>
+</li>
+				</ul>
+			</li>
+      <li>
+				<h2>Archives</h2>
+				<ul>
+						<li><a href='http://krypted.com/2011/01/' title='January 2011'>January 2011</a></li>
+	<li><a href='http://krypted.com/2010/12/' title='December 2010'>December 2010</a></li>
+	<li><a href='http://krypted.com/2010/11/' title='November 2010'>November 2010</a></li>
+	<li><a href='http://krypted.com/2010/10/' title='October 2010'>October 2010</a></li>
+	<li><a href='http://krypted.com/2010/09/' title='September 2010'>September 2010</a></li>
+	<li><a href='http://krypted.com/2010/08/' title='August 2010'>August 2010</a></li>
+	<li><a href='http://krypted.com/2010/07/' title='July 2010'>July 2010</a></li>
+	<li><a href='http://krypted.com/2010/06/' title='June 2010'>June 2010</a></li>
+	<li><a href='http://krypted.com/2010/05/' title='May 2010'>May 2010</a></li>
+	<li><a href='http://krypted.com/2010/04/' title='April 2010'>April 2010</a></li>
+	<li><a href='http://krypted.com/2010/03/' title='March 2010'>March 2010</a></li>
+	<li><a href='http://krypted.com/2010/02/' title='February 2010'>February 2010</a></li>
+	<li><a href='http://krypted.com/2010/01/' title='January 2010'>January 2010</a></li>
+	<li><a href='http://krypted.com/2009/12/' title='December 2009'>December 2009</a></li>
+	<li><a href='http://krypted.com/2009/11/' title='November 2009'>November 2009</a></li>
+	<li><a href='http://krypted.com/2009/10/' title='October 2009'>October 2009</a></li>
+	<li><a href='http://krypted.com/2009/09/' title='September 2009'>September 2009</a></li>
+	<li><a href='http://krypted.com/2009/08/' title='August 2009'>August 2009</a></li>
+	<li><a href='http://krypted.com/2009/07/' title='July 2009'>July 2009</a></li>
+	<li><a href='http://krypted.com/2009/06/' title='June 2009'>June 2009</a></li>
+	<li><a href='http://krypted.com/2009/05/' title='May 2009'>May 2009</a></li>
+	<li><a href='http://krypted.com/2009/04/' title='April 2009'>April 2009</a></li>
+	<li><a href='http://krypted.com/2009/03/' title='March 2009'>March 2009</a></li>
+	<li><a href='http://krypted.com/2009/02/' title='February 2009'>February 2009</a></li>
+	<li><a href='http://krypted.com/2009/01/' title='January 2009'>January 2009</a></li>
+	<li><a href='http://krypted.com/2008/12/' title='December 2008'>December 2008</a></li>
+	<li><a href='http://krypted.com/2008/11/' title='November 2008'>November 2008</a></li>
+	<li><a href='http://krypted.com/2008/10/' title='October 2008'>October 2008</a></li>
+	<li><a href='http://krypted.com/2008/09/' title='September 2008'>September 2008</a></li>
+	<li><a href='http://krypted.com/2008/08/' title='August 2008'>August 2008</a></li>
+	<li><a href='http://krypted.com/2008/07/' title='July 2008'>July 2008</a></li>
+	<li><a href='http://krypted.com/2008/06/' title='June 2008'>June 2008</a></li>
+	<li><a href='http://krypted.com/2008/05/' title='May 2008'>May 2008</a></li>
+	<li><a href='http://krypted.com/2008/04/' title='April 2008'>April 2008</a></li>
+	<li><a href='http://krypted.com/2008/03/' title='March 2008'>March 2008</a></li>
+	<li><a href='http://krypted.com/2008/02/' title='February 2008'>February 2008</a></li>
+	<li><a href='http://krypted.com/2008/01/' title='January 2008'>January 2008</a></li>
+	<li><a href='http://krypted.com/2007/12/' title='December 2007'>December 2007</a></li>
+	<li><a href='http://krypted.com/2007/11/' title='November 2007'>November 2007</a></li>
+	<li><a href='http://krypted.com/2007/10/' title='October 2007'>October 2007</a></li>
+	<li><a href='http://krypted.com/2007/09/' title='September 2007'>September 2007</a></li>
+	<li><a href='http://krypted.com/2007/08/' title='August 2007'>August 2007</a></li>
+	<li><a href='http://krypted.com/2007/07/' title='July 2007'>July 2007</a></li>
+	<li><a href='http://krypted.com/2007/06/' title='June 2007'>June 2007</a></li>
+	<li><a href='http://krypted.com/2007/05/' title='May 2007'>May 2007</a></li>
+	<li><a href='http://krypted.com/2007/04/' title='April 2007'>April 2007</a></li>
+	<li><a href='http://krypted.com/2007/03/' title='March 2007'>March 2007</a></li>
+	<li><a href='http://krypted.com/2007/02/' title='February 2007'>February 2007</a></li>
+	<li><a href='http://krypted.com/2007/01/' title='January 2007'>January 2007</a></li>
+	<li><a href='http://krypted.com/2006/12/' title='December 2006'>December 2006</a></li>
+	<li><a href='http://krypted.com/2006/11/' title='November 2006'>November 2006</a></li>
+	<li><a href='http://krypted.com/2006/10/' title='October 2006'>October 2006</a></li>
+	<li><a href='http://krypted.com/2006/09/' title='September 2006'>September 2006</a></li>
+	<li><a href='http://krypted.com/2006/08/' title='August 2006'>August 2006</a></li>
+	<li><a href='http://krypted.com/2006/07/' title='July 2006'>July 2006</a></li>
+	<li><a href='http://krypted.com/2006/06/' title='June 2006'>June 2006</a></li>
+	<li><a href='http://krypted.com/2006/05/' title='May 2006'>May 2006</a></li>
+	<li><a href='http://krypted.com/2006/04/' title='April 2006'>April 2006</a></li>
+	<li><a href='http://krypted.com/2006/03/' title='March 2006'>March 2006</a></li>
+	<li><a href='http://krypted.com/2006/02/' title='February 2006'>February 2006</a></li>
+	<li><a href='http://krypted.com/2006/01/' title='January 2006'>January 2006</a></li>
+	<li><a href='http://krypted.com/2005/12/' title='December 2005'>December 2005</a></li>
+	<li><a href='http://krypted.com/2005/11/' title='November 2005'>November 2005</a></li>
+	<li><a href='http://krypted.com/2005/10/' title='October 2005'>October 2005</a></li>
+	<li><a href='http://krypted.com/2005/09/' title='September 2005'>September 2005</a></li>
+	<li><a href='http://krypted.com/2005/08/' title='August 2005'>August 2005</a></li>
+	<li><a href='http://krypted.com/2005/07/' title='July 2005'>July 2005</a></li>
+	<li><a href='http://krypted.com/2005/06/' title='June 2005'>June 2005</a></li>
+	<li><a href='http://krypted.com/2005/05/' title='May 2005'>May 2005</a></li>
+	<li><a href='http://krypted.com/2005/04/' title='April 2005'>April 2005</a></li>
+	<li><a href='http://krypted.com/2005/03/' title='March 2005'>March 2005</a></li>
+	<li><a href='http://krypted.com/2005/02/' title='February 2005'>February 2005</a></li>
+	<li><a href='http://krypted.com/2005/01/' title='January 2005'>January 2005</a></li>
+	<li><a href='http://krypted.com/2004/12/' title='December 2004'>December 2004</a></li>
+				</ul>
+			</li>
+      <li>
+        <h2>Blogroll</h2>
+        <ul>
+          <li><a href="http://wordpress.org/development/">Development Blog</a></li>
+<li><a href="http://codex.wordpress.org/">Documentation</a></li>
+<li><a href="http://wordpress.org/extend/plugins/">Plugins</a></li>
+<li><a href="http://wordpress.org/extend/ideas/">Suggest Ideas</a></li>
+<li><a href="http://wordpress.org/support/">Support Forum</a></li>
+<li><a href="http://wordpress.org/extend/themes/">Themes</a></li>
+<li><a href="http://planet.wordpress.org/">WordPress Planet</a></li>
+        </ul>
+      </li>
+  		<li>
+        <h2>Meta</h2>
+  			<ul>
+  				  				<li><a href="http://krypted.com/wp-login.php">Log in</a></li>
+  				<li><a href="feed:http://krypted.com/feed/" title="Syndicate this site using RSS">Entries RSS</a></li>
+  				<li><a href="feed:http://krypted.com/comments/feed/" title="The latest comments to all posts in RSS">Comments RSS</a></li>
+  				  			</ul>
+  		</li>
+        <!--  <li><h2>Some ads here</h2>
+  <ul> -->
+
+<!--   ---------------------- LINK ADS ---------------------- -->
+
+
+<!-- / ---------------------- LINK ADS ---------------------- -->
+
+<!--  </ul>
+</li> -->  </ul>
+</div>
+<!-- /CONTENT -->
+
+  <!-- FOOTER -->
+  <div id="footer">
+  	<div id="blackband_bottom_left">&copy; <a href="http://krypted.com">Krypted.com</a>.</div>
+		<div id="blackband_bottom_right">Powered by <a href="http://www.318.com" title="krypted.com">Krypted</a> <!-- Styled by --> and <a href="http://www.318.com">318</a>.</div>
+  <script type='text/javascript'>
+/* <![CDATA[ */
+var emailL10n = {
+	ajax_url: "http://krypted.com/wp-content/plugins/wp-email/wp-email.php",
+	max_allowed: "5",
+	text_error: "The Following Error Occurs:",
+	text_name_invalid: "- Your Name is empty/invalid",
+	text_email_invalid: "- Your Email is empty/invalid",
+	text_remarks_invalid: "- Your Remarks is invalid",
+	text_friend_names_empty: "- Friend Name(s) is empty",
+	text_friend_name_invalid: "- Friend Name is empty/invalid: ",
+	text_max_friend_names_allowed: "- Maximum 5 Friend Names allowed",
+	text_friend_emails_empty: "- Friend Email(s) is empty",
+	text_friend_email_invalid: "- Friend Email is invalid: ",
+	text_max_friend_emails_allowed: "- Maximum 5 Friend Emails allowed",
+	text_friends_tally: "- Friend Name(s) count does not tally with Friend Email(s) count",
+	text_image_verify_empty: "- Image Verification is empty"
+};
+/* ]]> */
+</script>
+<script type='text/javascript' src='http://krypted.com/wp-content/plugins/wp-email/email-js.js?ver=2.50'></script>
+<div style="position: absolute; top: -10000px; left: -10000px;  width: 0px; height: 0px;" id="FB_HiddenContainer"></div><link type="text/css" rel="stylesheet" href="http://krypted.com/wp-content/plugins/wp-facebookconnect//fbconnect.css"></link>
+<script src="http://static.ak.connect.facebook.com/js/api_lib/v0.4/FeatureLoader.js.php" type="text/javascript"></script>
+<script src="http://krypted.com/wp-content/plugins/wp-facebookconnect//fbconnect.js" type="text/javascript"></script><!-- no logged in Facebook user --><div class="fbc_loginstate_top"></div><script type="text/javascript">
+FBConnect.init('b732f696b4139e622549f924cb75a20a', 'http://krypted.com/wp-content/plugins/wp-facebookconnect/', 'http://krypted.com', 0, FBConnect.appconfig_reload);
+
+</script>  </div>
+</div>
+</body>
+</html>
